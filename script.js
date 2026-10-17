@@ -1,12 +1,12 @@
 let img;
 let x = 0;
-let fade = 0;
-let fadeAmount = 5;
+let c = [ 'green', 'gray'];
 
 async function setup() {
   createCanvas(500, 500);
   //load image
   img = await loadImage('media/73goji.png');
+  frameRate(24);
 }
 
 function draw() {
@@ -18,21 +18,14 @@ function draw() {
     if(x>width){
       x=0;
     }
-  rotate(rotate);
 
   let angle = frameCount * 0.025;
   rotate(angle);
   fill('green');
   rect(30,30,100,20);
   
-  circle(200,200,100,100)
-  if(fade<0){
-    fadeAmount = 5;
-  }
-  
-  if(fade > 255){
-    fadeAmount *= -1;
-  }
-  
-  fade += fadeAmount;
+  let currentColor = c[frameCount % c.length];
+  fill(currentColor);
+  ellipse(200,200,100,100);
+
 }
